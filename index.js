@@ -6,9 +6,17 @@
  * EXAMPLE
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
+const testObj = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+
 function trimProperties(obj) {
-  // ✨ implement
+  let result = {...obj}
+  Object.keys(result).forEach(function(key, index){
+    result[key] = key.trim()
+  })
+
+  return result
 }
+trimProperties(testObj)
 
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
@@ -19,7 +27,11 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  Object.keys(obj).forEach(function(key, index){
+    obj[key] = key.trim()
+  })
+
+  return obj
 }
 
 /**
@@ -30,18 +42,32 @@ function trimPropertiesMutation(obj) {
  * EXAMPLE
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
+
+const testInteger = [
+      { integer: 1 }, 
+      { integer: 3 }, 
+      { integer: 2 }]
 function findLargestInteger(integers) {
-  // ✨ implement
+  let temp = integers[0].integer
+for(let i = 0; i < integers.length; i++){
+  if(integers[i].integer > temp){
+    temp = integers[i].integer
+  }
 }
+return temp
+}
+findLargestInteger(testInteger)
 
 class Counter {
   /**
    * [Exercise 4A] Counter creates a counter
    * @param {number} initialNumber - the initial state of the count
    */
+  
   constructor(initialNumber) {
-    // ✨ initialize whatever properties are needed
+    this.count = initialNumber
   }
+
 
   /**
    * [Exercise 4B] Counter.prototype.countDown counts down to zero
@@ -57,8 +83,11 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    return this.count > 0 ? this.count-- : 0
   }
 }
+
+
 
 class Seasons {
   /**
